@@ -23,9 +23,10 @@
         android:layout_marginEnd="8dp"
         android:background="@android:drawable/editbox_background"
         android:ems="10"
+        android:hint="@string/ed_title_hint"
         android:inputType="textPersonName"
         android:padding="15dp"
-        android:text="Name"
+        android:textColor="@color/edit_text_color_state"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainImageLayout" />
@@ -39,9 +40,10 @@
         android:background="@android:drawable/editbox_background"
         android:ems="10"
         android:gravity="top"
+        android:hint="@string/ed_desc_hint"
         android:inputType="textMultiLine|textPersonName"
         android:padding="15dp"
-        android:text="Name"
+        android:textColor="@color/edit_text_color_state"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTitle"
         app:layout_constraintStart_toStartOf="@+id/editTitle"
@@ -55,10 +57,12 @@
         android:layout_marginBottom="16dp"
         android:alpha="0.6"
         android:clickable="true"
+        android:onClick="onClickSave"
         app:backgroundTint="@color/dark_blue"
         app:layout_constraintBottom_toBottomOf="@+id/editDesc"
         app:layout_constraintEnd_toEndOf="@+id/editDesc"
-        app:srcCompat="@drawable/ic_save" />
+        app:srcCompat="@drawable/ic_save"
+        android:focusable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAddImage"
@@ -70,7 +74,8 @@
         android:onClick="onClickAddImage"
         app:layout_constraintBottom_toTopOf="@+id/fbSave"
         app:layout_constraintEnd_toEndOf="@+id/fbSave"
-        app:srcCompat="@drawable/ic_add_image" />
+        app:srcCompat="@drawable/ic_add_image"
+        android:focusable="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainImageLayout"
@@ -87,10 +92,11 @@
         tools:visibility="visible">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imMainImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,19 +108,37 @@
             android:id="@+id/imButtonEditImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="onClickChooseImage"
+            app:layout_constraintRight_toRightOf="@id/imMainImage"
+            app:layout_constraintTop_toTopOf="@id/imMainImage"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <ImageButton
             android:id="@+id/imButtonDeleteImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:onClick="onClickDeleteImage"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imMainImage"
+            app:layout_constraintRight_toRightOf="@id/imMainImage"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:onClick="onClickEditEnabled"
+        app:layout_constraintBottom_toBottomOf="@+id/editDesc"
+        app:layout_constraintLeft_toLeftOf="@id/editDesc"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
